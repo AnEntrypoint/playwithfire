@@ -1509,7 +1509,7 @@ var icons = {
 async function updateIcons() {
 	const { connectionState, tabs, errorText } = store.getState();
 	const connectedCount = Array.from(tabs.values()).filter((t) => t.state === "connected").length;
-	const allTabs = await chrome.tabs.query({});
+	const allTabs = await new Promise((resolve) => chrome.tabs.query({}, resolve));
 	const tabUrlMap = new Map(allTabs.map((tab) => [tab.id, tab.url]));
 	const allTabIds = [void 0, ...allTabs.map((tab) => tab.id).filter((id) => id !== void 0)];
 	for (const tabId of allTabIds) {
