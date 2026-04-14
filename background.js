@@ -1594,7 +1594,7 @@ async function onActionClicked(tab) {
 }
 resetDebugger();
 connectionManager.maintainLoop();
-chrome.contextMenus?.remove("playwriter-pin-element").catch(() => {}).finally(() => {
+Promise.resolve(chrome.contextMenus?.remove("playwriter-pin-element")).catch(() => {}).finally(() => {
 	chrome.contextMenus?.create({
 		id: "playwriter-pin-element",
 		title: "Copy Playwriter Element Reference",
